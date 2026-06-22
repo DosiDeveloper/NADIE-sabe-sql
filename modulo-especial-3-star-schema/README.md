@@ -25,38 +25,53 @@ Para convertirlo a estrella:
 
 ## Estructura del Star Schema
 
-```
-         ┌──────────────────────────┐
-         │    dim_estudiante        │
-         │ PK: estudiante_id        │
-         │ nombre, apellido         │
-         │ email, edad              │
-         │ rango_edad, activo       │
-         └───────────┬──────────────┘
-                     │
-┌──────────────┐     │     ┌──────────────────────┐
-│  dim_curso   │─────┼─────│  fact_inscripcion    │
-│ PK: curso_id │     │     │ PK: inscripcion_id   │
-│ nombre       │     │     │ FK estudiante_id     │
-│ creditos     │     │     │ FK curso_id          │
-│ nivel_dif    │     │     │ FK profesor_id       │
-│ ...          │     │     │ FK fecha_id          │
-└──────────────┘     │     │ calificacion         │
-                     │     │ estado               │
-            ┌────────┴─────┴──────────────────────┘
-            │  dim_profesor
-            │ PK: profesor_id
-            │ nombre, apellido
-            │ especialidad
-            └──────────────────────
-
-            ┌──────────────────────┐
-            │     dim_fecha        │
-            │ PK: fecha_id         │
-            │ fecha, dia, mes      │
-            │ nombre_mes           │
-            │ trimestre, anio      │
-            └──────────────────────┘
+``` mermaid
+---
+config:
+    layout: elk
+    
+---
+erDiagram
+    fact_inscripcion ||--|| dim_profesor : has
+    fact_inscripcion ||--|| dim_estudiante : has
+    fact_inscripcion ||--|| dim_fecha : has
+    fact_inscripcion ||--|| dim_curso : has
+    dim_estudiante {
+        int estudiante_id PK
+        string nombre
+        string apellido
+        string email
+        int edad
+        bool activo
+    }
+    dim_curso {
+        int curso_id PK
+        string nombre
+        int creditos
+    }
+    fact_inscripcion {
+        int inscripcion_id PK
+        int estudiante_id FK
+        int curso_id FK
+        int profesor_id FK
+        int fecha_id FK
+        int calificacion
+        bool estado
+    }
+    dim_profesor {
+        int profesor_id PK
+        string nombre
+        string apellido
+        string especialidad
+    }
+    dim_fecha {
+        int fecha_id PK
+        date fecha
+        int dia
+        int mes
+        int trimestre
+        int año
+    }
 ```
 
 ## Tablas de dimensión
