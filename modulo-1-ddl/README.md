@@ -94,13 +94,15 @@ Sintaxis del comando ALTER TABLE
   ALTER TABLE estudiantes RENAME TO alumnos;
   ```
 
-  > [!NOTE] Para eliminar una columna, Sqlite no tiene un comando para hacerlo, pero si existe con comandos que veremos en los siguientes modulos
+  > [!NOTE]
+  > Para eliminar una columna, Sqlite no tiene un comando para hacerlo, pero si existe con comandos que veremos en los siguientes modulos
 
 ### DROP TABLE
 
 Este comando nos permite **ELIMINAR** entidades, esto incluye sus registros e indices.
 
-> [!CAUTION] Este es un comando que hay que usar con precaución dada su naturaleza
+> [!CAUTION]
+> Este es un comando que hay que usar con precaución dada su naturaleza
 
 Sintaxis del comando
 
