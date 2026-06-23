@@ -6,6 +6,28 @@ El DDL permite definir la estructura de la base de datos: tablas, columnas, tipo
 
 ### CREATE TABLE
 
+Este comando nos permite crear entidades para almacenar, modificar o eliminar registros. Estas entidades tienes sus atributos que se definen en la creacion del mismo.
+
+> Haciendo una analogia sería crear la caja en donde guardaremos cosas con sus respectivos divisiones, tipo caja de bombones.
+
+Sintaxis del comando CREATE TABLE
+
+```sql
+CREATE TABLE nombre_tabla (
+    nombre_atributo tipo restricciones,
+    nombre_atributo tipo restricciones,
+    nombre_atributo tipo restricciones,
+    -- ...
+)
+```
+
+> En el caso de los tipos de datos se recomienda leer la [guia de referencia de tipos de datos](../tipos-de-datos-sqlite.md#tipos-de-datos-en-sqlite3)
+> En el caso de las restricciones de los campos ver esta [guia de referencia](../restricciones-sqlite.md)
+
+Por los momentos nos quedaremos en la creacion de tablas mas adelante se explicara que otros objetos utiles puedemos crear con este comando
+
+Un ejemplo de uso de este comando seria el siguiente:
+
 ```sql
 CREATE TABLE estudiantes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,38 +39,70 @@ CREATE TABLE estudiantes (
 );
 ```
 
-### Tipos de datos en SQLite
-
-| Tipo     | Descripción                  |
-|----------|------------------------------|
-| INTEGER  | Número entero                |
-| REAL     | Número decimal               |
-| TEXT     | Cadena de texto              |
-| BLOB     | Datos binarios               |
-| DATE     | Fecha (se almacena como TEXT)|
-
-### Constraints
-
-| Constraint    | Descripción                         |
-|---------------|-------------------------------------|
-| PRIMARY KEY   | Identificador único de la fila      |
-| NOT NULL      | No permite valores nulos            |
-| UNIQUE        | Valor único en toda la columna      |
-| DEFAULT       | Valor por defecto                   |
-| CHECK         | Valida una condición lógica         |
-| FOREIGN KEY   | Relación con otra tabla             |
-
 ### ALTER TABLE
 
-```sql
--- Agregar columna
-ALTER TABLE estudiantes ADD COLUMN telefono TEXT;
+Este comando nos permite modificar tanto el nombre de una entidad como los atributo. En el caso de los atributos podemos añadir, eliminar o modificar los ya existentes
 
--- Renombrar tabla
-ALTER TABLE estudiantes RENAME TO alumnos;
-```
+> Otra analogia sería, esta caja no se va a llamar caja si no "**_box_**", o un ejemplo de este estilo para los atributos seria, esta caja puede almacenar zapatos de la marca "**_Nike_**" pues ahora quiero que almacene zapatos de la marca "**_Reebok_**"
+
+Sintaxis del comando ALTER TABLE
+
+- **Para agregar una nueva columna**.
+
+  Sintaxis del comando
+
+  ```sql
+  ALTER TABLE nombre_tabla
+  ADD nombre_columna tipo_dato;
+  ```
+
+  Un ejemplo de esto seria el siguiente:
+
+  ```sql
+  ALTER TABLE estudiantes ADD COLUMN telefono TEXT;
+  ```
+
+- **Para renombrar una columna**
+
+  Sintaxis del comando
+
+  ```sql
+  ALTER TABLE nombre_tabla
+  RENAME COLUMN old_column_name TO new_column_name;
+  ```
+
+  Un ejemplo:
+
+  ```sql
+  ALTER TABLE profesor
+  RENAME COLUMN catedra TO materia;
+  ```
+
+- **Para renombrar una tabla**
+
+  Sintaxis del comando
+
+  ```sql
+  ALTER TABLE nombre_tabla
+  RENAME TO nuevo_nombre_tabla
+  ```
+
+  Un ejemplo de uso:
+
+  ```sql
+  -- Renombrar tabla
+  ALTER TABLE estudiantes RENAME TO alumnos;
+  ```
+
+  > [!NOTE] Para eliminar una columna, Sqlite no tiene un comando para hacerlo, pero si existe con comandos que veremos en los siguientes modulos
 
 ### DROP TABLE
+
+Este comando nos permite **ELIMINAR** entidades, esto incluye sus registros e indices.
+
+> [!CAUTION] Este es un comando que hay que usar con precaución dada su naturaleza
+
+Sintaxis del comando
 
 ```sql
 DROP TABLE IF EXISTS estudiantes;
@@ -56,7 +110,7 @@ DROP TABLE IF EXISTS estudiantes;
 
 ## Base de datos de ejemplo
 
-La base `nivel1.db.sqlite3` contiene las tablas vacías listas para que practiques DDL.
+La base `modulo1.db.sqlite3` contiene las tablas vacías listas para que practiques DDL.
 
 ### Esquema
 
