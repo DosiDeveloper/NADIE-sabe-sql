@@ -21,8 +21,10 @@ CREATE TABLE nombre_tabla (
 )
 ```
 
-> En el caso de los tipos de datos se recomienda leer la [guia de referencia de tipos de datos](../tipos-de-datos-sqlite.md#tipos-de-datos-en-sqlite3)
-> En el caso de las restricciones de los campos ver esta [guia de referencia](../restricciones-sqlite.md)
+> [!NOTE]
+> En el caso de los tipos de datos se recomienda leer la [guia de referencia de tipos de datos](../tipos-de-datos-sqlite.md#tipos-de-datos-en-sqlite3).
+> 
+> En el caso de las restricciones de los campos ver esta [guia de referencia](../restricciones-sqlite.md).
 
 Por los momentos nos quedaremos en la creacion de tablas mas adelante se explicara que otros objetos utiles puedemos crear con este comando
 
@@ -94,13 +96,15 @@ Sintaxis del comando ALTER TABLE
   ALTER TABLE estudiantes RENAME TO alumnos;
   ```
 
-  > [!NOTE] Para eliminar una columna, Sqlite no tiene un comando para hacerlo, pero si existe con comandos que veremos en los siguientes modulos
+  > [!NOTE]
+  > Para eliminar una columna, Sqlite no tiene un comando para hacerlo, pero si existe con comandos que veremos en los siguientes modulos
 
 ### DROP TABLE
 
 Este comando nos permite **ELIMINAR** entidades, esto incluye sus registros e indices.
 
-> [!CAUTION] Este es un comando que hay que usar con precaución dada su naturaleza
+> [!CAUTION]
+> Este es un comando que hay que usar con precaución dada su naturaleza
 
 Sintaxis del comando
 
