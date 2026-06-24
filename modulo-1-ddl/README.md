@@ -1,4 +1,4 @@
-# Nivel 1 — DDL (Data Definition Language)
+# Modulo 1 — DDL (Data Definition Language)
 
 El DDL permite definir la estructura de la base de datos: tablas, columnas, tipos de datos y restricciones.
 
